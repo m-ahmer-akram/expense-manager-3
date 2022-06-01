@@ -23,7 +23,7 @@ export const ExpenseForm = (props) => {
 
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount,
       date: new Date(enteredDate),
     };
 
@@ -41,6 +41,7 @@ export const ExpenseForm = (props) => {
           <input
             type="text"
             value={enteredTitle}
+            required
             onChange={titleChangeHadler}
           />
         </div>
@@ -52,6 +53,7 @@ export const ExpenseForm = (props) => {
             min="0.01"
             step="0.01"
             max="999.99"
+            required
             onChange={amountChangeHadler}
           />
         </div>
@@ -62,11 +64,15 @@ export const ExpenseForm = (props) => {
             value={enteredDate}
             min="2019-01-01"
             step="2022-12-31"
+            required
             onChange={dateChangeHadler}
           />
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={props.onCancel}>
+          Cancel
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
